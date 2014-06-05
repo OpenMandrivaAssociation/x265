@@ -15,6 +15,7 @@ Source0: %{name}-%{rev}.tar.xz
 Release: 1
 Source0: %{name}-%{version}.tar.xz
 %endif
+Patch0:	x265-6941-cmake-fix-pkgconfig-path.patch
 Summary: An H.265/HEVC encoder
 URL: http://x265.org/
 License: GPLv2, commercial licensing available for a fee
@@ -59,6 +60,8 @@ Static library for %{name}
 %else
 %setup -q
 %endif
+%patch0 -p1 -b .pkgconfig~
+
 cd source
 %cmake -G Ninja
 
