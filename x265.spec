@@ -64,7 +64,7 @@ cd source
 
 %build
 cd source/build
-ninja
+ninja %{_smp_mflags}
 
 %install
 cd source/build
