@@ -1,6 +1,6 @@
 %define major 32
 # Version number is from "hg tip"
-%define rev 8057
+%define rev 8137
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
