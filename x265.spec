@@ -1,6 +1,6 @@
-%define major 32
+%define major 35
 # Version number is from "hg tip"
-%define rev 8137
+%define rev 8713
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
@@ -66,7 +66,7 @@ Static library for %{name}
 
 %build
 pushd source
-%cmake -G Ninja
+%cmake -DHIGH_BIT_DEPTH:BOOL=ON -G Ninja
 popd
 
 pushd source/build
