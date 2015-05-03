@@ -1,6 +1,6 @@
-%define major 20
+%define major 35
 # Version number is from "hg tip"
-%define rev 6941
+%define rev 8713
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
@@ -12,9 +12,12 @@ Release: 0.%{rev}.1
 # hg clone https://bitbucket.org/multicoreware/x265
 Source0: %{name}-%{rev}.tar.xz
 %else
-Release: 1
+Release: 2
 Source0: %{name}-%{version}.tar.xz
 %endif
+Patch0:	x265-6941-cmake-fix-pkgconfig-path.patch
+Patch1:	x265-pic.patch
+Patch2:	x265-test-shared.patch
 Summary: An H.265/HEVC encoder
 URL: http://x265.org/
 License: GPLv2, commercial licensing available for a fee
@@ -59,23 +62,27 @@ Static library for %{name}
 %else
 %setup -q
 %endif
-cd source
-%cmake -G Ninja
+%apply_patches
 
 %build
-cd source/build
-ninja
+pushd source
+%cmake -DHIGH_BIT_DEPTH:BOOL=ON -G Ninja
+popd
+
+pushd source/build
+ninja %{_smp_mflags}
+popd
 
 %install
-cd source/build
+pushd source/build
 DESTDIR=%{buildroot} ninja install
+popd
 
 %files
 %{_bindir}/*
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
-%{_libdir}/*.so.0.0
 
 %files -n %{devname}
 %{_includedir}/*

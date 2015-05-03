@@ -1,0 +1,21 @@
+--- x265-6941/source/CMakeLists.txt~	2014-05-29 22:42:16.000000000 +0200
++++ x265-6941/source/CMakeLists.txt	2014-06-05 23:11:52.213367365 +0200
+@@ -307,7 +307,7 @@ if(X265_LATEST_TAG)
+     # Produce a pkg-config file
+     configure_file("x265.pc.in" "x265.pc" @ONLY)
+     install(FILES       "${CMAKE_CURRENT_BINARY_DIR}/x265.pc"
+-            DESTINATION "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/pkgconfig")
++            DESTINATION "${LIB_INSTALL_DIR}/pkgconfig")
+ endif()
+ 
+ if(NOT WIN32)
+--- x265-6941/source/x265.pc.in~	2014-05-29 22:42:16.000000000 +0200
++++ x265-6941/source/x265.pc.in	2014-06-05 23:17:56.649806727 +0200
+@@ -1,6 +1,6 @@
+ prefix=@CMAKE_INSTALL_PREFIX@
+ exec_prefix=${prefix}
+-libdir=${exec_prefix}/@LIB_INSTALL_DIR@
++libdir=@LIB_INSTALL_DIR@
+ includedir=${prefix}/include
+ 
+ Name: @CMAKE_PROJECT_NAME@
