@@ -1,6 +1,6 @@
-%define major 35
+%define major 57
 # Version number is from "hg tip"
-%define rev 8713
+%define rev 10376
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
@@ -12,7 +12,7 @@ Release: 0.%{rev}.1
 # hg clone https://bitbucket.org/multicoreware/x265
 Source0: %{name}-%{rev}.tar.xz
 %else
-Release: 2
+Release: 1
 Source0: %{name}-%{version}.tar.xz
 %endif
 Patch0:	x265-6941-cmake-fix-pkgconfig-path.patch
@@ -66,7 +66,11 @@ Static library for %{name}
 
 %build
 pushd source
-%cmake -DHIGH_BIT_DEPTH:BOOL=ON -G Ninja
+%cmake \
+%ifnarch %{ix86}
+	-DHIGH_BIT_DEPTH:BOOL=ON \
+%endif
+	-G Ninja
 popd
 
 pushd source/build
