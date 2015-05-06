@@ -1,13 +1,11 @@
-diff -up multicoreware-x265-d6257335c537/source/test/CMakeLists.txt.r multicoreware-x265-d6257335c537/source/test/CMakeLists.txt
---- multicoreware-x265-d6257335c537/source/test/CMakeLists.txt.r	2014-07-09 10:25:15.000000000 +0200
-+++ multicoreware-x265-d6257335c537/source/test/CMakeLists.txt	2014-07-10 12:10:15.171798782 +0200
-@@ -17,7 +17,7 @@ add_executable(TestBench ${YASM_SRC}
+--- x265-10376/source/test/CMakeLists.txt.0002~	2015-05-06 18:03:56.946061580 +0200
++++ x265-10376/source/test/CMakeLists.txt	2015-05-06 18:04:34.344331005 +0200
+@@ -22,7 +22,7 @@ add_executable(TestBench ${YASM_SRC}
      mbdstharness.cpp mbdstharness.h
      ipfilterharness.cpp ipfilterharness.h
      intrapredharness.cpp intrapredharness.h)
 -target_link_libraries(TestBench x265-static ${PLATFORM_LIBS})
 +target_link_libraries(TestBench x265-shared ${PLATFORM_LIBS})
- 
- add_executable(PoolTest testpool.cpp)
--target_link_libraries(PoolTest x265-static ${PLATFORM_LIBS})
-+target_link_libraries(PoolTest x265-shared ${PLATFORM_LIBS})
+ if(LINKER_OPTIONS)
+     set_target_properties(TestBench PROPERTIES LINK_FLAGS ${LINKER_OPTIONS})
+ endif()
