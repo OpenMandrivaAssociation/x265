@@ -8,14 +8,13 @@
 Name: x265
 Version: 0.0.1
 %if %{rev}
-Release: 0.%{rev}.1
+Release: 0.%{rev}.2
 # hg clone https://bitbucket.org/multicoreware/x265
 Source0: %{name}-%{rev}.tar.xz
 %else
 Release: 1
 Source0: %{name}-%{version}.tar.xz
 %endif
-Patch0:	x265-6941-cmake-fix-pkgconfig-path.patch
 Patch1:	x265-pic.patch
 Patch2:	x265-test-shared.patch
 Summary: An H.265/HEVC encoder
