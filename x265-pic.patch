@@ -1,15 +1,19 @@
---- x265-10376/source/CMakeLists.txt.0001~	2015-05-06 18:02:18.446347153 +0200
-+++ x265-10376/source/CMakeLists.txt	2015-05-06 18:03:46.761988057 +0200
-@@ -157,10 +157,10 @@ if(GCC)
+--- x265-11300/source/CMakeLists.txt.0001~	2016-02-12 13:48:35.253742249 +0100
++++ x265-11300/source/CMakeLists.txt	2016-02-12 13:49:35.200721810 +0100
+@@ -181,13 +181,13 @@ if(GCC)
              add_definitions(-march=native)
          endif()
      elseif(X86 AND NOT X64)
 -        add_definitions(-march=i686)
 +        add_definitions(-march=i686 -fPIC)
      endif()
-     if(ARM)
--        add_definitions(-march=armv6 -mfloat-abi=hard -mfpu=vfp)
-+        add_definitions(-march=armv6 -mfloat-abi=hard -mfpu=vfp -fPIC)
+     if(ARM AND CROSS_COMPILE_ARM)
+-        set(ARM_ARGS -march=armv6 -mfloat-abi=soft -mfpu=vfp -marm)
++        set(ARM_ARGS -march=armv7 -mfloat-abi=soft -mfpu=vfp -marm -fPIC)
+         add_definitions(${ARM_ARGS})
+     elseif(ARM)
+-        set(ARM_ARGS -march=armv6 -mfloat-abi=hard -mfpu=vfp -marm)
++        set(ARM_ARGS -march=armv7 -mfloat-abi=hard -mfpu=vfp -marm -fPIC)
+         add_definitions(${ARM_ARGS})
      endif()
      if(FPROFILE_GENERATE)
-         if(INTEL_CXX)
