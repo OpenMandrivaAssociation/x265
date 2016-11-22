@@ -1,10 +1,10 @@
-%define major 79
+%define major 95
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
 
 Name:		x265
-Version:	1.9
+Version:	2.1
 Release:	1
 Source0:	http://ftp.videolan.org/pub/videolan/x265/%{name}_%{version}.tar.gz
 Patch0:		arm.patch
@@ -49,6 +49,12 @@ Static library for %{name}
 %prep
 %setup -qn %{name}_%{version}
 %apply_patches
+
+MAJOR=$(grep 'set(X265_BUILD' source/CMakeLists.txt |sed -e 's,.*X265_BUILD ,,;s,).*,,')
+if [ "$MAJOR" != "%{major}" ]; then
+	echo "Please update major to $MAJOR"
+	exit 1
+fi
 
 %build
 pushd source
