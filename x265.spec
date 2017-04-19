@@ -1,10 +1,10 @@
-%define major 95
+%define major 110
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
 
 Name:		x265
-Version:	2.1
+Version:	2.3
 Release:	1
 Source0:	http://ftp.videolan.org/pub/videolan/x265/%{name}_%{version}.tar.gz
 Patch0:		arm.patch
