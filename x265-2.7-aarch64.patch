@@ -1,0 +1,59 @@
+diff -up x265_2.7/source/CMakeLists.txt.omv~ x265_2.7/source/CMakeLists.txt
+--- x265_2.7/source/CMakeLists.txt.omv~	2018-04-21 20:53:04.711915935 +0200
++++ x265_2.7/source/CMakeLists.txt	2018-04-21 20:55:07.172158308 +0200
+@@ -40,7 +40,7 @@ SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_
+ # System architecture detection
+ string(TOLOWER "${CMAKE_SYSTEM_PROCESSOR}" SYSPROC)
+ set(X86_ALIASES x86 i386 i686 x86_64 amd64)
+-set(ARM_ALIASES armv6l armv7l)
++set(ARM_ALIASES armv6l armv7l armv8l)
+ list(FIND X86_ALIASES "${SYSPROC}" X86MATCH)
+ list(FIND ARM_ALIASES "${SYSPROC}" ARMMATCH)
+ set(POWER_ALIASES ppc64 ppc64le)
+@@ -69,10 +69,18 @@ elseif(${SYSPROC} STREQUAL "armv7l")
+     set(ARM 1)
+     set(ARMV7 1)
+     add_definitions(-DX265_ARCH_ARM=1 -DHAVE_ARMV6=1 -DHAVE_NEON=1)
++elseif(${SYSPROC} STREQUAL "armv8l")
++    message(STATUS "Detected ARMV8 system processor")
++    set(ARM 1)
++    set(ARMV7 1)
++    set(ARMV8 1)
++    add_definitions(-DX265_ARCH_ARM=1 -DHAVE_ARMV6=1 -DHAVE_NEON=1)
+ elseif(${SYSPROC} STREQUAL "aarch64")
+     message(STATUS "Detected AArch64 system processor")
+     set(ARM 1)
+     set(ARMV7 1)
++    set(ARMV8 1)
++    set(ARM64 1)
+     add_definitions(-DX265_ARCH_ARM=1 -DHAVE_ARMV6=1 -DHAVE_NEON=1)
+ elseif(POWERMATCH GREATER "-1")
+     message(STATUS "Detected POWER target processor")
+@@ -243,7 +251,7 @@ if(GCC)
+     endif()
+     if(ARM AND CROSS_COMPILE_ARM)
+         set(ARM_ARGS -march=armv6 -mfloat-abi=soft -mfpu=vfp -marm -fPIC)
+-    elseif(ARM)
++    elseif(ARM AND NOT ARM64)
+         find_package(Neon)
+         if(CPU_HAS_NEON)
+             set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=neon -marm -fPIC)
+diff -up x265_2.7/source/dynamicHDR10/CMakeLists.txt.omv~ x265_2.7/source/dynamicHDR10/CMakeLists.txt
+--- x265_2.7/source/dynamicHDR10/CMakeLists.txt.omv~	2018-04-21 20:55:15.474106947 +0200
++++ x265_2.7/source/dynamicHDR10/CMakeLists.txt	2018-04-21 20:55:28.979023395 +0200
+@@ -44,7 +44,7 @@ if(GCC)
+     endif()
+     if(ARM AND CROSS_COMPILE_ARM)
+         set(ARM_ARGS -march=armv6 -mfloat-abi=soft -mfpu=vfp -marm -fPIC)
+-    elseif(ARM)
++    elseif(ARM AND NOT ARM64)
+         find_package(Neon)
+         if(CPU_HAS_NEON)
+             set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=neon -marm -fPIC)
+@@ -150,4 +150,4 @@ set(BIN_INSTALL_DIR bin CACHE STRING "In
+ option(ENABLE_SHARED "Build shared library" OFF)
+ 
+ install(FILES hdr10plus.h DESTINATION include)
+-endif()
+\ No newline at end of file
++endif()
