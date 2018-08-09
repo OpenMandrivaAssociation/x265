@@ -1,13 +1,14 @@
-%define major 95
+%define major 151
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
 
 Name:		x265
-Version:	2.1
+Version:	2.7
 Release:	1
 Source0:	http://ftp.videolan.org/pub/videolan/x265/%{name}_%{version}.tar.gz
 Patch0:		arm.patch
+Patch1:		x265-2.7-aarch64.patch
 Summary:	An H.265/HEVC encoder
 URL:		http://x265.org/
 License:	GPLv2, commercial licensing available for a fee
