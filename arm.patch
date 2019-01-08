@@ -1,8 +1,9 @@
---- x265_2.1/source/CMakeLists.txt.0000~	2016-11-22 13:27:23.261712492 +0100
-+++ x265_2.1/source/CMakeLists.txt	2016-11-22 13:32:43.224995491 +0100
-@@ -56,6 +56,25 @@ if("${SYSPROC}" STREQUAL "" OR X86MATCH
-     else()
-         message(STATUS "Detected x86 target processor")
+diff -up x265_2.9/source/CMakeLists.txt.0000~ x265_2.9/source/CMakeLists.txt
+--- x265_2.9/source/CMakeLists.txt.0000~	2019-01-08 16:55:04.199575988 +0100
++++ x265_2.9/source/CMakeLists.txt	2019-01-08 16:56:35.348462975 +0100
+@@ -55,6 +55,25 @@ if("${SYSPROC}" STREQUAL "" OR X86MATCH
+         add_definitions(-DX86_64=1)
+         message(STATUS "Detected x86_64 target processor")
      endif()
 +elseif(${SYSPROC} MATCHES "armv5.*")
 +    message(STATUS "Detected ARMV5 system processor")
@@ -26,8 +27,9 @@
  elseif(POWERMATCH GREATER "-1")
      message(STATUS "Detected POWER target processor")
      set(POWER 1)
---- x265_2.1/source/common/cpu.cpp.0000~	2016-09-22 12:23:28.000000000 +0200
-+++ x265_2.1/source/common/cpu.cpp	2016-11-22 13:27:23.262712469 +0100
+diff -up x265_2.9/source/common/cpu.cpp.0000~ x265_2.9/source/common/cpu.cpp
+--- x265_2.9/source/common/cpu.cpp.0000~	2018-10-05 14:14:40.000000000 +0200
++++ x265_2.9/source/common/cpu.cpp	2019-01-08 16:55:04.199575988 +0100
 @@ -37,7 +37,7 @@
  #include <machine/cpu.h>
  #endif
