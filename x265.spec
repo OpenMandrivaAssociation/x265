@@ -11,9 +11,10 @@
 %endif
 
 Name:		x265
-Version:	3.1.1
+Version:	3.2.1
 Release:	1
 Source0:	http://ftp.videolan.org/pub/videolan/x265/%{name}_%{version}.tar.gz
+# Original sources and faster releases here: https://bitbucket.org/multicoreware/x265/downloads/
 #Patch0:		arm.patch
 #Patch1:		x265-2.7-aarch64.patch
 Patch2:		fix-arm.patch
