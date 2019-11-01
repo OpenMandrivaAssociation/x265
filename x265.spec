@@ -1,4 +1,4 @@
-%define major 176
+%define major 179
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
@@ -11,9 +11,10 @@
 %endif
 
 Name:		x265
-Version:	3.1.1
+Version:	3.2.1
 Release:	1
 Source0:	http://ftp.videolan.org/pub/videolan/x265/%{name}_%{version}.tar.gz
+# Original sources and faster releases here: https://bitbucket.org/multicoreware/x265/downloads/
 #Patch0:		arm.patch
 #Patch1:		x265-2.7-aarch64.patch
 Patch2:		fix-arm.patch
@@ -57,7 +58,7 @@ Static library for %{name}
 
 %prep
 %setup -qn %{name}_%{version}
-%apply_patches
+%autopatch -p1
 
 MAJOR=$(grep 'set(X265_BUILD' source/CMakeLists.txt |sed -e 's,.*X265_BUILD ,,;s,).*,,')
 if [ "$MAJOR" != "%{major}" ]; then
@@ -66,6 +67,10 @@ if [ "$MAJOR" != "%{major}" ]; then
 fi
 
 %build
+%ifarch %{armx} %{arm}
+export CFLAGS="%{optflags} -fPIC"
+export CXXFLAGS="%{optflags} -fPIC"
+%endif
 pushd source
 %cmake \
 %ifnarch %{ix86}
