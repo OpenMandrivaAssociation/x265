@@ -58,7 +58,7 @@ Static library for %{name}
 
 %prep
 %setup -qn %{name}_%{version}
-%apply_patches
+%autopatch -p1
 
 MAJOR=$(grep 'set(X265_BUILD' source/CMakeLists.txt |sed -e 's,.*X265_BUILD ,,;s,).*,,')
 if [ "$MAJOR" != "%{major}" ]; then
@@ -67,6 +67,10 @@ if [ "$MAJOR" != "%{major}" ]; then
 fi
 
 %build
+%ifarch %{armx} %{arm}
+export CFLAGS="%{optflags} -fPIC"
+export CXXFLAGS="%{optflags} -fPIC"
+%endif
 pushd source
 %cmake \
 %ifnarch %{ix86}
