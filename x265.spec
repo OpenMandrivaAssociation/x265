@@ -11,7 +11,7 @@
 %endif
 
 Name:		x265
-Version:	3.3
+Version:	3.4
 Release:	1
 Source0:	http://ftp.videolan.org/pub/videolan/x265/%{name}_%{version}.tar.gz
 # Original sources and faster releases here: https://bitbucket.org/multicoreware/x265/downloads/
