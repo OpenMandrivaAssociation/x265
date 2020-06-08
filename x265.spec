@@ -10,6 +10,10 @@
 %global __cxx %{_bindir}/g++
 %endif
 
+%ifarch %{arm} %{armx}
+%define _disable_lto 1
+%endif
+
 Name:		x265
 Version:	3.4
 Release:	1
