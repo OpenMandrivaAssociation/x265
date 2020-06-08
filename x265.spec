@@ -74,6 +74,7 @@ fi
 
 %build
 %ifarch %{armx} %{arm}
+%global ldflags %{ldflags} -fuse-ld=gold
 export CFLAGS="%{optflags} -fPIC"
 export CXXFLAGS="%{optflags} -fPIC"
 %endif
