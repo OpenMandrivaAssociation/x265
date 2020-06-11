@@ -10,10 +10,6 @@
 %global __cxx %{_bindir}/g++
 %endif
 
-%ifarch %aarch64
-%define _disable_lto 1
-%endif
-
 Name:		x265
 Version:	3.4
 Release:	1
@@ -74,7 +70,6 @@ fi
 
 %build
 %ifarch %{armx} %{arm}
-%global ldflags %{ldflags} -fuse-ld=gold
 export CFLAGS="%{optflags} -fPIC"
 export CXXFLAGS="%{optflags} -fPIC"
 %endif
