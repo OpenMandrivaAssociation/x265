@@ -1,0 +1,63 @@
+--- x265_3.4/source/CMakeLists.txt.cflags
++++ x265_3.4/source/CMakeLists.txt
+@@ -238,28 +238,6 @@
+             endif()
+         endif()
+     endif()
+-    if(ARM AND CROSS_COMPILE_ARM)
+-        if(ARM64)
+-            set(ARM_ARGS -fPIC)
+-        else()
+-            set(ARM_ARGS -march=armv6 -mfloat-abi=soft -mfpu=vfp -marm -fPIC)
+-        endif()
+-        message(STATUS "cross compile arm")
+-    elseif(ARM)
+-        if(ARM64)
+-            set(ARM_ARGS -fPIC)
+-            add_definitions(-DHAVE_NEON)
+-        else()
+-            find_package(Neon)
+-            if(CPU_HAS_NEON)
+-                set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=neon -marm -fPIC)
+-                add_definitions(-DHAVE_NEON)
+-            else()
+-                set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=vfp -marm)
+-            endif()
+-        endif()
+-    endif()
+-    add_definitions(${ARM_ARGS})
+     if(FPROFILE_GENERATE)
+         if(INTEL_CXX)
+             add_definitions(-prof-gen -prof-dir="${CMAKE_CURRENT_BINARY_DIR}")
+@@ -546,7 +524,7 @@
+             add_custom_command(
+                 OUTPUT ${ASM}.${SUFFIX}
+                 COMMAND ${CMAKE_CXX_COMPILER}
+-                ARGS ${ARM_ARGS} -c ${ASM_SRC} -o ${ASM}.${SUFFIX}
++                ARGS ${CFLAGS} -c ${ASM_SRC} -o ${ASM}.${SUFFIX}
+                 DEPENDS ${ASM_SRC})
+         endforeach()
+     elseif(X86)
+
+--- x265_3.4/source/dynamicHDR10/CMakeLists.txt.cflags
++++ x265_3.4/source/dynamicHDR10/CMakeLists.txt
+@@ -42,18 +42,6 @@
+             endif()
+         endif()
+     endif()
+-    if(ARM AND CROSS_COMPILE_ARM)
+-        set(ARM_ARGS -march=armv6 -mfloat-abi=soft -mfpu=vfp -marm -fPIC)
+-    elseif(ARM)
+-        find_package(Neon)
+-        if(CPU_HAS_NEON)
+-            set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=neon -marm -fPIC)
+-            add_definitions(-DHAVE_NEON)
+-        else()
+-            set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=vfp -marm)
+-        endif()
+-    endif()
+-    add_definitions(${ARM_ARGS})
+     if(FPROFILE_GENERATE)
+         if(INTEL_CXX)
+             add_definitions(-prof-gen -prof-dir="${CMAKE_CURRENT_BINARY_DIR}")
+
