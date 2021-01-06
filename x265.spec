@@ -12,7 +12,7 @@
 
 Name:		x265
 Version:	3.4
-Release:	1
+Release:	2
 Source0:	http://ftp.videolan.org/pub/videolan/x265/%{name}_%{version}.tar.gz
 # Original sources and faster releases here: https://bitbucket.org/multicoreware/x265/downloads/
 #Patch0:		arm.patch
@@ -27,6 +27,7 @@ Group:		System/Libraries
 BuildRequires:	yasm
 BuildRequires:	cmake
 BuildRequires:	ninja
+Requires: %{libname} = %{EVRD}
 
 %description
 x265 is an open-source project and free application library
