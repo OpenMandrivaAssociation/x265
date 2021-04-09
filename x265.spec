@@ -25,6 +25,7 @@ URL:		http://x265.org/
 License:	GPLv2, commercial licensing available for a fee
 Group:		System/Libraries
 BuildRequires:	yasm
+BuildRequires:	git-core
 BuildRequires:	cmake
 BuildRequires:	ninja
 Requires: %{libname} = %{EVRD}
@@ -62,6 +63,12 @@ Static library for %{name}
 %prep
 %setup -qn %{name}_%{version}
 %autopatch -p1
+
+git init
+git config user.name "OpenMandriva Builder"
+git config user.email "build@openmandriva.org"
+git commit -am "Fake a git repository so X265_LATEST_TAG gets set"
+git tag %{version}
 
 MAJOR=$(grep 'set(X265_BUILD' source/CMakeLists.txt |sed -e 's,.*X265_BUILD ,,;s,).*,,')
 if [ "$MAJOR" != "%{major}" ]; then
