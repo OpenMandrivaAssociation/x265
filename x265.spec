@@ -67,6 +67,7 @@ Static library for %{name}
 git init
 git config user.name "OpenMandriva Builder"
 git config user.email "build@openmandriva.org"
+git add .
 git commit -am "Fake a git repository so X265_LATEST_TAG gets set"
 git tag %{version}
 
