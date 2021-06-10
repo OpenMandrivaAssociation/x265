@@ -14,7 +14,8 @@ Name:		x265
 Version:	3.5
 Release:	1
 Source0:	https://bitbucket.org/multicoreware/x265_git/downloads/x265_%{version}.tar.gz
-# Original sources and faster releases here: https://bitbucket.org/multicoreware/x265/downloads/
+# Sources at https://www.videolan.org/developers/x265.html
+# Original sources and faster releases here: https://bitbucket.org/multicoreware/x265_git/downloads/
 #Patch0:		arm.patch
 #Patch1:		x265-2.7-aarch64.patch
 #Patch2:		fix-arm.patch
