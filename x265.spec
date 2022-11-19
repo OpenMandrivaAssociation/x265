@@ -12,7 +12,7 @@
 
 Name:		x265
 Version:	3.5
-Release:	1
+Release:	2
 Source0:	https://bitbucket.org/multicoreware/x265_git/downloads/x265_%{version}.tar.gz
 # Sources at https://www.videolan.org/developers/x265.html
 # Original sources and faster releases here: https://bitbucket.org/multicoreware/x265_git/downloads/
