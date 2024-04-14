@@ -3,7 +3,7 @@
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
 
-%ifarch %{ix86} %{arm} %{armx}
+%ifarch %{ix86}
 # Workaround for buildtime error
 # relocation R_386_GOTOFF against external symbol stderr cannot be used when making a shared object
 %global __cc %{_bindir}/gcc
