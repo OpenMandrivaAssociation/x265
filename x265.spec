@@ -20,7 +20,7 @@ Source0:	https://bitbucket.org/multicoreware/x265_git/downloads/x265_%{version}.
 #Patch1:		x265-2.7-aarch64.patch
 #Patch2:		fix-arm.patch
 #Patch3:		x265-arm-cflags.patch	
-Patch4:		x265-detect_cpu_armhfp.patch
+#Patch4:		x265-detect_cpu_armhfp.patch
 Summary:	An H.265/HEVC encoder
 URL:		http://x265.org/
 License:	GPLv2, commercial licensing available for a fee
