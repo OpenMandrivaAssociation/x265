@@ -1,9 +1,9 @@
-%define major 199
+%define major 209
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
 
-%ifarch %{ix86} %{arm} %{armx}
+%ifarch %{ix86}
 # Workaround for buildtime error
 # relocation R_386_GOTOFF against external symbol stderr cannot be used when making a shared object
 %global __cc %{_bindir}/gcc
@@ -11,24 +11,21 @@
 %endif
 
 Name:		x265
-Version:	3.5
-Release:	6
+Version:	3.6
+Release:	1
 Source0:	https://bitbucket.org/multicoreware/x265_git/downloads/x265_%{version}.tar.gz
 # Sources at https://www.videolan.org/developers/x265.html
 # Original sources and faster releases here: https://bitbucket.org/multicoreware/x265_git/downloads/
-#Patch0:		arm.patch
-#Patch1:		x265-2.7-aarch64.patch
-#Patch2:		fix-arm.patch
-Patch3:		x265-arm-cflags.patch	
-Patch4:		x265-detect_cpu_armhfp.patch
 Summary:	An H.265/HEVC encoder
 URL:		http://x265.org/
 License:	GPLv2, commercial licensing available for a fee
 Group:		System/Libraries
 BuildRequires:	yasm
+BuildRequires:	nasm
 BuildRequires:	git-core
 BuildRequires:	cmake
 BuildRequires:	ninja
+BuildRequires:	pkgconfig(numa)
 Requires: %{libname} = %{EVRD}
 
 %description
