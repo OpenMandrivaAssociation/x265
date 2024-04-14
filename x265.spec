@@ -1,4 +1,4 @@
-%define major 199
+%define major 206
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
@@ -11,8 +11,8 @@
 %endif
 
 Name:		x265
-Version:	3.5
-Release:	6
+Version:	3.6
+Release:	1
 Source0:	https://bitbucket.org/multicoreware/x265_git/downloads/x265_%{version}.tar.gz
 # Sources at https://www.videolan.org/developers/x265.html
 # Original sources and faster releases here: https://bitbucket.org/multicoreware/x265_git/downloads/
