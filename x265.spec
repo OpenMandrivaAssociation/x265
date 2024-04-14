@@ -26,9 +26,11 @@ URL:		http://x265.org/
 License:	GPLv2, commercial licensing available for a fee
 Group:		System/Libraries
 BuildRequires:	yasm
+BuildRequires:	nasm
 BuildRequires:	git-core
 BuildRequires:	cmake
 BuildRequires:	ninja
+BuildRequires:	pkgconfig(numa)
 Requires: %{libname} = %{EVRD}
 
 %description
