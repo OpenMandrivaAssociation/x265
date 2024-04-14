@@ -1,4 +1,4 @@
-%define major 206
+%define major 209
 %define libname %mklibname x265 %{major}
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
