@@ -17,7 +17,7 @@ Source0:	https://bitbucket.org/multicoreware/x265_git/downloads/x265_%{version}.
 # Sources at https://www.videolan.org/developers/x265.html
 # Original sources and faster releases here: https://bitbucket.org/multicoreware/x265_git/downloads/
 Summary:	An H.265/HEVC encoder
-URL:		http://x265.org/
+URL:		https://x265.org/
 License:	GPLv2, commercial licensing available for a fee
 Group:		System/Libraries
 BuildRequires:	yasm
