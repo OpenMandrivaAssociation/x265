@@ -1,5 +1,6 @@
-%define major 209
-%define libname %mklibname x265 %{major}
+%define major 212
+%define oldlibname %mklibname x265 209
+%define libname %mklibname x265
 %define devname %mklibname x265 -d
 %define staticname %mklibname x265 -d -s
 
@@ -11,7 +12,7 @@
 %endif
 
 Name:		x265
-Version:	3.6
+Version:	4.0
 Release:	1
 Source0:	https://bitbucket.org/multicoreware/x265_git/downloads/x265_%{version}.tar.gz
 # Sources at https://www.videolan.org/developers/x265.html
@@ -36,6 +37,7 @@ Video Coding (HEVC) format.
 %package -n %{libname}
 Summary: The x265 H.265/HEVC encoding library
 Group: System/Libraries
+Obsoletes: %{oldlibname} < %{EVRD}
 
 %description -n %{libname}
 x265 is an open-source project and free application library
@@ -59,8 +61,7 @@ Requires: %{devname} = %{EVRD}
 Static library for %{name}
 
 %prep
-%setup -qn %{name}_%{version}
-%autopatch -p1
+%autosetup -p1 -n %{name}_%{version}
 
 git init
 git config user.name "OpenMandriva Builder"
