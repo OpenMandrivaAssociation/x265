@@ -1,4 +1,4 @@
-%define major 216
+%define major 217
 %define oldlibname %mklibname x265 209
 %define libname %mklibname x265
 %define devname %mklibname x265 -d
@@ -12,11 +12,12 @@
 %endif
 
 Name:		x265
-Version:	4.2
+Version:	4.3
 Release:	1
-Source0:	https://bitbucket.org/multicoreware/x265_git/downloads/x265_%{version}.tar.gz
+# Bitbucket download area lags; tag 4.3 is on Multicorewareinc GitHub
+# Tarball repacked as x265_%{version}.tar.gz for stable layout (dir x265_4.3)
+Source0:	https://github.com/Multicorewareinc/x265/archive/refs/tags/%{version}/x265_%{version}.tar.gz
 # Sources at https://www.videolan.org/developers/x265.html
-# Original sources and faster releases here: https://bitbucket.org/multicoreware/x265_git/downloads/
 Summary:	An H.265/HEVC encoder
 URL:		https://x265.org/
 License:	GPLv2, commercial licensing available for a fee
